@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "game",
     "crispy_bootstrap5",
     "crispy_forms",
 ]
@@ -83,6 +83,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = "game.Player"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
