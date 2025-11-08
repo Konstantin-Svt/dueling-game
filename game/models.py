@@ -59,21 +59,21 @@ class Character(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         limit_choices_to={"slot": "weapon"},
-        related_name="characters",
+        related_name="characters_with_weapon",
     )
     equipped_armor = models.ForeignKey(
         "Item",
         null=True,
         on_delete=models.SET_NULL,
         limit_choices_to={"slot": "armor"},
-        related_name="characters",
+        related_name="characters_with_armor",
     )
     equipped_accessory = models.ForeignKey(
         "Item",
         null=True,
         on_delete=models.SET_NULL,
         limit_choices_to={"slot": "accessory"},
-        related_name="characters",
+        related_name="characters_with_accessory",
     )
     inventory = models.ManyToManyField("Item", related_name="characters")
 
