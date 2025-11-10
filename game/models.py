@@ -84,10 +84,13 @@ class Character(models.Model):
 
     def clean(self):
         super().clean()
-        if self.profession not in self.race.allowed_professions.all():
-            raise ValidationError(
-                f"{self.profession.name} profession is not allowed for {self.race.name} race."
-            )
+        if self._state.adding:
+            if self.profession not in self.race.allowed_professions.all():
+                raise ValidationError(
+                    f"{self.profession.name} profession is not allowed for {self.race.name} race."
+                )
+            if self.owner.max_characters < self.owner.characters.count():
+                raise ValidationError(f"You cannot have more than {self.owner.max_characters} characters.")
 
     def recalculate_stats(self) -> None:
         damage = self.profession.damage_base + self.level * 0.5
@@ -228,8 +231,9 @@ class Battle(models.Model):
 
     def clean(self):
         super().clean()
-        if self.challenger == self.duelist:
-            raise ValidationError("You can't battle yourself.")
+        if self._state.adding:
+            if self.challenger == self.duelist:
+                raise ValidationError("You can't battle yourself.")
 
     def calculate_winner(self) -> None:
         if self.challenger and self.duelist:
