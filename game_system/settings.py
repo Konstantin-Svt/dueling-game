@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-LOGIN_REDIRECT_URL = "game:character-list"
+LOGIN_REDIRECT_URL = "game:my-character-list"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
