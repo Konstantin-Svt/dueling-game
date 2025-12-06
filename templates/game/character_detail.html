@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>{{ object.name }}</title>{% endblock %}
+
+{% block background %}
+   <style>
+     body {
+        background-image:
+           linear-gradient(rgba(80, 10, 10, 0.5), rgba(80, 10, 10, 0.5)),
+           url("{% static 'images/background/slumber_dragon.png' %}");
+     }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <img src="{% static 'images/races/' %}{{ object.race.name }}.png" alt="race-icon" class="icon chardetail-icon">
+  <img src="{% static 'images/professions/' %}{{ object.profession.name }}.png" alt="profession-icon" class="icon chardetail-icon">
+  <h1>{{ object.name }} ({{ object.race.name }} {{ object.profession.name }})</h1>
+
+  <div class="d-flex gap-3">
+    {% if user == object.owner %}
+      <form method="post" action="">
+        {% csrf_token %}
+        <input type="hidden" name="join_battle" value="1">
+        <button type="submit" class="btn btn-primary">Join Battle</button>
+      </form>
+    {% endif %}
+    <a class="btn btn-primary btn-background" href="{% url 'game:character-battle-list' char_name=object.name %}">Battle History</a>
+  </div>
+
+  <p>Level: {{ object.level }} (exp: {{object.current_exp}}/{{ object.exp_for_level }} points)</p>
+  <div style="max-width: 300px; position: relative;">
+    <div class="progress" style="height: 24px;">
+      <div class="progress-bar bg-success d-flex justify-content-center align-items-center"
+           style="width: {{ exp_percent }}%;">
+        <div class="progress-text">
+          <p>{{ object.current_exp }}/{{ object.exp_for_level }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul> Stats:
+    <li>Damage: {{ object.damage }}</li>
+    <li>Protection: {{ object.protection }}</li>
+    <li>Health: {{ object.health }}</li>
+  </ul>
+
+  <div class="row">
+    {% for slot, item in equipment.items %}
+      <div class="col-sm-4">
+        <p>
+          {{ slot|capfirst }}: {% if item %}<a href="{% url 'game:item-list' %}?searched_name={{ item.name }}" target="_blank" rel="noopener nofollow">{{ item.name }}</a>{% else %}None{% endif %}
+        </p>
+        {% if item %}
+          <div class="d-flex">
+            <img src="{% static 'images/items/' %}{{ item.name }}.png" alt="item-image" class="icon itemdetail-icon">
+            <ul>
+              {% if item.bonus_damage %}<li>Damage: {{ item.bonus_damage }}</li>{% endif %}
+              {% if item.bonus_protection %}<li>Protection: {{ item.bonus_protection }}</li>{% endif %}
+              {% if item.bonus_health %}<li>Health: {{ item.bonus_health }}</li>{% endif %}
+            </ul>
+          </div>
+        {% else %}
+          <img src="{% static 'images/empty/' %}{{ slot }}.png" alt="missing-item" class="icon itemempty-icon">
+        {% endif %}
+        {% if user == object.owner %}
+          <div class="d-flex gap-3 ms-1">
+            <a href="{% url 'game:character-change' char_name=object.name change_slot=slot %}" class="btn btn-primary mt-2">
+              Change
+            </a>
+            {% if item %}
+              <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="item_unequip" value="{{ item.id }}">
+                <button type="submit" class="btn btn-primary btn-background mt-2">Unequip</button>
+              </form>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if user == object.owner %}
+    <p class="mt-4">Gold: {{ object.gold }}</p>
+    <div class="row">
+      <div class="col-sm-4">
+        <a href="{% url 'game:character-inventory' char_name=object.name %}">
+          <img src="{% static 'images/inventory.png' %}" alt="inventory-icon" class="icon chardetail-icon">
+          Inventory
+        </a>
+      </div>
+      <div class="col-sm-4">
+        <a href="{% url 'game:character-shop' char_name=object.name %}">
+          <img src="{% static 'images/stall.png' %}" alt="shop-icon" class="icon chardetail-icon">
+          Shop
+        </a>
+      </div>
+    </div>
+    <a href="{% url 'game:character-delete' char_name=object.name %}" class="btn btn-primary btn-background mt-5">Delete Character</a>
+  {% endif %}
+{% endblock %}
