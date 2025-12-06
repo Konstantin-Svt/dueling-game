@@ -1,0 +1,2277 @@
+[
+{
+  "model": "game.player",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$lgRbIjHd24w8s97YYdhEwv$ZUzNW3T5s7dRelZZhzzjiaFEctj3268oe1NKwPh6KTU=",
+    "last_login": "2025-12-05T14:41:49.222Z",
+    "is_superuser": true,
+    "username": "superman",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@admin.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-10T16:07:33.938Z",
+    "max_characters": 6,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "game.player",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$EvjENiFB1D9llXHJ3eIGip$u47obgrZjEKFkUuReFeXhMO5m3ME5MjIeoiJmZXGqoQ=",
+    "last_login": "2025-11-26T15:12:47.236Z",
+    "is_superuser": false,
+    "username": "test1",
+    "first_name": "",
+    "last_name": "",
+    "email": "test1@mail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-26T15:11:41.885Z",
+    "max_characters": 6,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "game.player",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$GaVlJOzXTA5z2jPJuwo7fC$n6H4iKmGhjOalzqZUPqwbQ1jAeBzKT3Buwt6bqpEPPY=",
+    "last_login": "2025-12-02T21:03:32.836Z",
+    "is_superuser": false,
+    "username": "test1234",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-02T20:56:00.056Z",
+    "max_characters": 6,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "game.player",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$auHDvzMaNmMRWiCxyayfk7$pWopX7Pnf2fM7dDZzTRER3ZVGdi/yawOhm5uwKPWlT0=",
+    "last_login": "2025-12-05T14:41:25.718Z",
+    "is_superuser": false,
+    "username": "test123",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-05T14:31:53.810Z",
+    "max_characters": 6,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "game.race",
+  "pk": 1,
+  "fields": {
+    "name": "Human",
+    "description": "Humans are the most adaptable, balanced and ambitious of all races. Blessed with versatility and driven by an unyielding spirit, they can master nearly any path. Their cities rise where others would see only wastelands, and their curiosity pushes them to explore, create, and conquer.\r\n\r\nThough short-lived compared to other races, Humans make up for it with determination and innovation. Their kingdoms are ever-changing - shaped by conflict, diplomacy, and the relentless pursuit of progress.",
+    "damage_modifier": 1.02,
+    "protection_modifier": 1.02,
+    "health_modifier": 1.02,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "game.race",
+  "pk": 2,
+  "fields": {
+    "name": "Dwarf",
+    "description": "Dwarves are stalwart and resilient, masters of stone and metal. Short in stature but mighty in strength, they are known for their unbreakable endurance, unwavering loyalty, and fierce determination.\r\nRenowned for their courage in battle and their stubbornness in life, Dwarves value honor, tradition, and kinship above all else. Though they may seem gruff, their hearts are steadfast, and their strikes are swift.",
+    "damage_modifier": 1.0,
+    "protection_modifier": 1.05,
+    "health_modifier": 1.02,
+    "allowed_professions": [
+      1,
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "game.race",
+  "pk": 3,
+  "fields": {
+    "name": "Elf",
+    "description": "Elves are an ancient and graceful race, known for their elegance, sharp senses, and natural affinity with the world around them. Tall and lithe, they move with unmatched agility, making them formidable fighters.\r\n\r\nSteeped in tradition, Elves live in harmony with nature, valuing knowledge, art, and the balance of life. Their keen intellect and perception allow them to see threats and opportunities where others see none, while their longevity gives them a perspective beyond the fleeting concerns of mortals.",
+    "damage_modifier": 1.05,
+    "protection_modifier": 1.0,
+    "health_modifier": 1.0,
+    "allowed_professions": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "game.race",
+  "pk": 4,
+  "fields": {
+    "name": "Orc",
+    "description": "Orcs are fierce and formidable warriors, defined by their raw strength and endurance. Born for battle, they thrive in harsh environments and are driven by honor, survival, and the thrill of combat. Their towering physiques and muscular builds make them natural fighters, capable of wielding heavy weapons and breaking enemy lines.\r\n  Though often seen as brutal, Orcs possess a deep sense of loyalty to their clans and a strong warrior’s code. Every scar tells a story, every battle sharpens their resolve, and every victory cements their place in the tribe.",
+    "damage_modifier": 1.03,
+    "protection_modifier": 1.0,
+    "health_modifier": 1.03,
+    "allowed_professions": [
+      1,
+      2,
+      4
+    ]
+  }
+},
+{
+  "model": "game.profession",
+  "pk": 1,
+  "fields": {
+    "name": "Warrior",
+    "description": "A Warrior is the master of close range combat, trained to wield many different deadly weapons. Years of battle have honed Warrior's reflexes and hardened their resolve. Whether charging into enemy ranks, holding a defensive line, or dueling a powerful foe, a Warrior’s courage never falters. Versatile training allow them to wear all kind of armor, even the heaviest ones.",
+    "damage_base": 15,
+    "protection_base": 10,
+    "health_base": 150
+  }
+},
+{
+  "model": "game.profession",
+  "pk": 2,
+  "fields": {
+    "name": "Ranger",
+    "description": "The Ranger is a master of precision and focus—an elite sharpshooter who turns every shot into a deadly promise. Trained to eliminate targets before they can even react, Rangers rely on calm discipline, keen eyesight, and unmatched accuracy. They study wind, distance, and timing to strike with range weapons like bows and crossbows. Whether hunting beasts or ambushing enemies, a Ranger always knows the terrain better than anyone else. To achieve that kind of speed and precision, they rely mostly on light or medium armor.",
+    "damage_base": 20,
+    "protection_base": 7,
+    "health_base": 125
+  }
+},
+{
+  "model": "game.profession",
+  "pk": 3,
+  "fields": {
+    "name": "Battle Mage",
+    "description": "The Battle Mage is a warrior who channels arcane power through enchanted weapons and armor. Forged in both steel and sorcery, their equipment hums with latent energy—swords crackle with elemental force, and runic armor shimmer with protective wards.\r\nUnlike traditional mages, Battle Mages rely on strength, reflex, and mastery of their gear rather than spoken incantations. Every strike releases stored power, turning close combat into a dazzling storm of energy and steel.\r\nThey stand between the world of magic and the art of war—living conduits of arcane craftsmanship and martial discipline. Can wear only general light armor or pieces that are specifically ecnhanted for them.",
+    "damage_base": 25,
+    "protection_base": 5,
+    "health_base": 100
+  }
+},
+{
+  "model": "game.profession",
+  "pk": 4,
+  "fields": {
+    "name": "Rogue",
+    "description": "The Rogue is a silent predator—an artist of death who strikes from shadows. Armed with daggers and unshakable focus, the Rogue relies on speed, precision, and flawless timing rather than brute force.\r\nEvery movement is calculated, every strike deliberate. A flicker in the dark, a whisper of steel, and the fight is over before it begins. \r\nThey kill not for glory, but for purpose—whether it’s vengeance, coin, or the cold satisfaction of perfection.\r\nShadow mastery limits their choice of armor only to the lightiest.",
+    "damage_base": 22,
+    "protection_base": 6,
+    "health_base": 110
+  }
+},
+{
+  "model": "game.profession",
+  "pk": 5,
+  "fields": {
+    "name": "Paladin",
+    "description": "The Paladin is a holy warrior bound by honor, duty, and unshakable faith. Clad in heavy shining armor, the Paladin stands as a beacon of light in a world consumed by darkness.\r\nMore than just a fighter, the Paladin embodies the will of the divine—protecting the weak, purging corruption, and standing firm against evil no matter the cost. Their resolve fuels their strength, and their conviction turns every strike into righteous judgment.\r\nGuided by oaths and purpose, Paladins are both shield and sword—defenders of truth and deliverers of justice.",
+    "damage_base": 12,
+    "protection_base": 15,
+    "health_base": 180
+  }
+},
+{
+  "model": "game.item",
+  "pk": 1,
+  "fields": {
+    "name": "Wooden Sword",
+    "price": 1,
+    "level_required": 1,
+    "slot": "weapon",
+    "type": "sword",
+    "bonus_damage": 5,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 2,
+  "fields": {
+    "name": "Training Armor",
+    "price": 5,
+    "level_required": 1,
+    "slot": "armor",
+    "type": "light_armor",
+    "bonus_damage": 0,
+    "bonus_protection": 2,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 3,
+  "fields": {
+    "name": "Iron Shank",
+    "price": 12,
+    "level_required": 2,
+    "slot": "weapon",
+    "type": "dagger",
+    "bonus_damage": 10,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 4,
+  "fields": {
+    "name": "Wooden Staff",
+    "price": 10,
+    "level_required": 1,
+    "slot": "weapon",
+    "type": "staff",
+    "bonus_damage": 7,
+    "bonus_protection": 1,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 5,
+  "fields": {
+    "name": "Short Iron Sword",
+    "price": 30,
+    "level_required": 3,
+    "slot": "weapon",
+    "type": "sword",
+    "bonus_damage": 15,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 6,
+  "fields": {
+    "name": "Wooden Bow",
+    "price": 2,
+    "level_required": 1,
+    "slot": "weapon",
+    "type": "bow",
+    "bonus_damage": 6,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 7,
+  "fields": {
+    "name": "Stone on a Stick",
+    "price": 10,
+    "level_required": 2,
+    "slot": "weapon",
+    "type": "mace",
+    "bonus_damage": 7,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 8,
+  "fields": {
+    "name": "Rubber Mallet",
+    "price": 15,
+    "level_required": 3,
+    "slot": "weapon",
+    "type": "mace",
+    "bonus_damage": 10,
+    "bonus_protection": 1,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 9,
+  "fields": {
+    "name": "Ironwood Staff",
+    "price": 15,
+    "level_required": 3,
+    "slot": "weapon",
+    "type": "staff",
+    "bonus_damage": 12,
+    "bonus_protection": 1,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 10,
+  "fields": {
+    "name": "Hardened Wooden Bow",
+    "price": 15,
+    "level_required": 3,
+    "slot": "weapon",
+    "type": "bow",
+    "bonus_damage": 10,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 11,
+  "fields": {
+    "name": "Smelt Iron Dagger",
+    "price": 25,
+    "level_required": 4,
+    "slot": "weapon",
+    "type": "dagger",
+    "bonus_damage": 14,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 12,
+  "fields": {
+    "name": "Stone Hammer",
+    "price": 50,
+    "level_required": 6,
+    "slot": "weapon",
+    "type": "mace",
+    "bonus_damage": 20,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 13,
+  "fields": {
+    "name": "Iron Balk",
+    "price": 45,
+    "level_required": 6,
+    "slot": "weapon",
+    "type": "staff",
+    "bonus_damage": 16,
+    "bonus_protection": 1,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 14,
+  "fields": {
+    "name": "Leather Rags",
+    "price": 15,
+    "level_required": 3,
+    "slot": "armor",
+    "type": "light_armor",
+    "bonus_damage": 0,
+    "bonus_protection": 5,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 15,
+  "fields": {
+    "name": "Ironwood Bow",
+    "price": 40,
+    "level_required": 6,
+    "slot": "weapon",
+    "type": "bow",
+    "bonus_damage": 16,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 16,
+  "fields": {
+    "name": "Steel Pointer",
+    "price": 45,
+    "level_required": 6,
+    "slot": "weapon",
+    "type": "dagger",
+    "bonus_damage": 19,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 17,
+  "fields": {
+    "name": "Sharpened Steel Sword",
+    "price": 100,
+    "level_required": 9,
+    "slot": "weapon",
+    "type": "sword",
+    "bonus_damage": 30,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 18,
+  "fields": {
+    "name": "Woodcutter's Axe",
+    "price": 25,
+    "level_required": 4,
+    "slot": "weapon",
+    "type": "axe",
+    "bonus_damage": 17,
+    "bonus_protection": 0,
+    "bonus_health": 5,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 19,
+  "fields": {
+    "name": "Iron Battle Axe",
+    "price": 50,
+    "level_required": 7,
+    "slot": "weapon",
+    "type": "axe",
+    "bonus_damage": 17,
+    "bonus_protection": 0,
+    "bonus_health": 6,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 20,
+  "fields": {
+    "name": "Hardened Leather Armor",
+    "price": 60,
+    "level_required": 7,
+    "slot": "armor",
+    "type": "medium_armor",
+    "bonus_damage": 0,
+    "bonus_protection": 10,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 21,
+  "fields": {
+    "name": "Iron Plates",
+    "price": 70,
+    "level_required": 7,
+    "slot": "armor",
+    "type": "heavy_armor",
+    "bonus_damage": 0,
+    "bonus_protection": 15,
+    "bonus_health": 10,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 22,
+  "fields": {
+    "name": "Steel Rod",
+    "price": 150,
+    "level_required": 12,
+    "slot": "weapon",
+    "type": "staff",
+    "bonus_damage": 35,
+    "bonus_protection": 3,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 23,
+  "fields": {
+    "name": "Simple Steel Crossbow",
+    "price": 140,
+    "level_required": 14,
+    "slot": "weapon",
+    "type": "crossbow",
+    "bonus_damage": 40,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 24,
+  "fields": {
+    "name": "Longbow",
+    "price": 165,
+    "level_required": 15,
+    "slot": "weapon",
+    "type": "bow",
+    "bonus_damage": 45,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 25,
+  "fields": {
+    "name": "Lucky Horseshoe",
+    "price": 199,
+    "level_required": 13,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 7,
+    "bonus_protection": 7,
+    "bonus_health": 15,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 26,
+  "fields": {
+    "name": "Heart-Shaped Arrow",
+    "price": 170,
+    "level_required": 15,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 15,
+    "bonus_protection": 0,
+    "bonus_health": 40,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 27,
+  "fields": {
+    "name": "Twin-Headed Axe",
+    "price": 195,
+    "level_required": 19,
+    "slot": "weapon",
+    "type": "axe",
+    "bonus_damage": 58,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 28,
+  "fields": {
+    "name": "Death Hand Dagger",
+    "price": 179,
+    "level_required": 17,
+    "slot": "weapon",
+    "type": "dagger",
+    "bonus_damage": 55,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 29,
+  "fields": {
+    "name": "Crusader Hammer",
+    "price": 200,
+    "level_required": 20,
+    "slot": "weapon",
+    "type": "mace",
+    "bonus_damage": 50,
+    "bonus_protection": 5,
+    "bonus_health": 0,
+    "allowed_professions": [
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 30,
+  "fields": {
+    "name": "Azure Blade",
+    "price": 270,
+    "level_required": 20,
+    "slot": "weapon",
+    "type": "magic_sword",
+    "bonus_damage": 55,
+    "bonus_protection": 10,
+    "bonus_health": 20,
+    "allowed_professions": [
+      3
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 31,
+  "fields": {
+    "name": "Heavy Crossbow",
+    "price": 190,
+    "level_required": 19,
+    "slot": "weapon",
+    "type": "crossbow",
+    "bonus_damage": 53,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 32,
+  "fields": {
+    "name": "Assassins Blade",
+    "price": 215,
+    "level_required": 22,
+    "slot": "weapon",
+    "type": "dagger",
+    "bonus_damage": 65,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 33,
+  "fields": {
+    "name": "Spellblade",
+    "price": 145,
+    "level_required": 9,
+    "slot": "weapon",
+    "type": "magic_sword",
+    "bonus_damage": 30,
+    "bonus_protection": 5,
+    "bonus_health": 10,
+    "allowed_professions": [
+      3
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 34,
+  "fields": {
+    "name": "Golden Crest",
+    "price": 210,
+    "level_required": 24,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 17,
+    "bonus_protection": 0,
+    "bonus_health": 22,
+    "allowed_professions": [
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 35,
+  "fields": {
+    "name": "Gladius",
+    "price": 240,
+    "level_required": 24,
+    "slot": "weapon",
+    "type": "sword",
+    "bonus_damage": 62,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 36,
+  "fields": {
+    "name": "Kartus Rune",
+    "price": 300,
+    "level_required": 26,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 10,
+    "bonus_protection": 20,
+    "bonus_health": 30,
+    "allowed_professions": [
+      3
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 37,
+  "fields": {
+    "name": "Poison Vial",
+    "price": 220,
+    "level_required": 26,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 30,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 38,
+  "fields": {
+    "name": "Curved Elven Bow",
+    "price": 280,
+    "level_required": 29,
+    "slot": "weapon",
+    "type": "bow",
+    "bonus_damage": 65,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 39,
+  "fields": {
+    "name": "Skull Crusher",
+    "price": 300,
+    "level_required": 30,
+    "slot": "weapon",
+    "type": "mace",
+    "bonus_damage": 68,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 40,
+  "fields": {
+    "name": "Crystal Infused Staff",
+    "price": 350,
+    "level_required": 31,
+    "slot": "weapon",
+    "type": "staff",
+    "bonus_damage": 63,
+    "bonus_protection": 8,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 41,
+  "fields": {
+    "name": "War Banner",
+    "price": 200,
+    "level_required": 30,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 35,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 42,
+  "fields": {
+    "name": "Bone Carver",
+    "price": 340,
+    "level_required": 32,
+    "slot": "weapon",
+    "type": "dagger",
+    "bonus_damage": 66,
+    "bonus_protection": 0,
+    "bonus_health": 40,
+    "allowed_professions": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 43,
+  "fields": {
+    "name": "Pendant of Satyr",
+    "price": 180,
+    "level_required": 16,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 18,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 44,
+  "fields": {
+    "name": "Warcry Axe",
+    "price": 350,
+    "level_required": 35,
+    "slot": "weapon",
+    "type": "axe",
+    "bonus_damage": 75,
+    "bonus_protection": 10,
+    "bonus_health": 20,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 45,
+  "fields": {
+    "name": "Dwarven Repeater",
+    "price": 320,
+    "level_required": 35,
+    "slot": "weapon",
+    "type": "crossbow",
+    "bonus_damage": 80,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 46,
+  "fields": {
+    "name": "Incubus Sword",
+    "price": 420,
+    "level_required": 37,
+    "slot": "weapon",
+    "type": "magic_sword",
+    "bonus_damage": 82,
+    "bonus_protection": 15,
+    "bonus_health": 40,
+    "allowed_professions": [
+      3
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 47,
+  "fields": {
+    "name": "Chained Book",
+    "price": 400,
+    "level_required": 39,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 10,
+    "bonus_protection": 0,
+    "bonus_health": 70,
+    "allowed_professions": [
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 48,
+  "fields": {
+    "name": "Demon Edge",
+    "price": 520,
+    "level_required": 44,
+    "slot": "weapon",
+    "type": "sword",
+    "bonus_damage": 85,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 49,
+  "fields": {
+    "name": "Sanctified Scepter",
+    "price": 500,
+    "level_required": 43,
+    "slot": "weapon",
+    "type": "mace",
+    "bonus_damage": 85,
+    "bonus_protection": 0,
+    "bonus_health": 44,
+    "allowed_professions": [
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 50,
+  "fields": {
+    "name": "Stiletto of Forgotten God",
+    "price": 560,
+    "level_required": 47,
+    "slot": "weapon",
+    "type": "dagger",
+    "bonus_damage": 100,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 51,
+  "fields": {
+    "name": "Giantshunter Bow",
+    "price": 580,
+    "level_required": 46,
+    "slot": "weapon",
+    "type": "bow",
+    "bonus_damage": 94,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 52,
+  "fields": {
+    "name": "Staff of Elven Elder",
+    "price": 660,
+    "level_required": 48,
+    "slot": "weapon",
+    "type": "staff",
+    "bonus_damage": 80,
+    "bonus_protection": 20,
+    "bonus_health": 30,
+    "allowed_professions": [
+      1,
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 53,
+  "fields": {
+    "name": "Ring of Ancint Kings",
+    "price": 720,
+    "level_required": 49,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 30,
+    "bonus_protection": 20,
+    "bonus_health": 50,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 54,
+  "fields": {
+    "name": "Reaper's Scythe",
+    "price": 760,
+    "level_required": 50,
+    "slot": "weapon",
+    "type": "axe",
+    "bonus_damage": 120,
+    "bonus_protection": 0,
+    "bonus_health": 40,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 55,
+  "fields": {
+    "name": "Dragonblood Vial",
+    "price": 800,
+    "level_required": 50,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 48,
+    "bonus_protection": 0,
+    "bonus_health": 20,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 56,
+  "fields": {
+    "name": "Moonlight Blade",
+    "price": 900,
+    "level_required": 50,
+    "slot": "weapon",
+    "type": "magic_sword",
+    "bonus_damage": 110,
+    "bonus_protection": 10,
+    "bonus_health": 25,
+    "allowed_professions": [
+      3
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 57,
+  "fields": {
+    "name": "Titan's Fist",
+    "price": 950,
+    "level_required": 52,
+    "slot": "weapon",
+    "type": "mace",
+    "bonus_damage": 133,
+    "bonus_protection": 5,
+    "bonus_health": 33,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 58,
+  "fields": {
+    "name": "Destroyer Shard",
+    "price": 1000,
+    "level_required": 52,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 52,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 59,
+  "fields": {
+    "name": "Demon Hunter",
+    "price": 1200,
+    "level_required": 54,
+    "slot": "weapon",
+    "type": "crossbow",
+    "bonus_damage": 155,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 60,
+  "fields": {
+    "name": "Hellforged Razor",
+    "price": 1350,
+    "level_required": 54,
+    "slot": "weapon",
+    "type": "dagger",
+    "bonus_damage": 160,
+    "bonus_protection": 0,
+    "bonus_health": 0,
+    "allowed_professions": [
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 61,
+  "fields": {
+    "name": "White Drake Sword",
+    "price": 1400,
+    "level_required": 54,
+    "slot": "weapon",
+    "type": "sword",
+    "bonus_damage": 140,
+    "bonus_protection": 0,
+    "bonus_health": 50,
+    "allowed_professions": [
+      1,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 62,
+  "fields": {
+    "name": "Shadowbeast Teeth Necklace",
+    "price": 1500,
+    "level_required": 54,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 40,
+    "bonus_protection": 25,
+    "bonus_health": 10,
+    "allowed_professions": [
+      1,
+      2,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 63,
+  "fields": {
+    "name": "Enchanted Halo",
+    "price": 1520,
+    "level_required": 54,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 20,
+    "bonus_protection": 40,
+    "bonus_health": 50,
+    "allowed_professions": [
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 64,
+  "fields": {
+    "name": "Huntsman Leather Armor",
+    "price": 130,
+    "level_required": 15,
+    "slot": "armor",
+    "type": "light_armor",
+    "bonus_damage": 0,
+    "bonus_protection": 20,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 65,
+  "fields": {
+    "name": "Medium Bear Leather Armor",
+    "price": 150,
+    "level_required": 14,
+    "slot": "armor",
+    "type": "medium_armor",
+    "bonus_damage": 0,
+    "bonus_protection": 30,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 66,
+  "fields": {
+    "name": "Steel Plates",
+    "price": 180,
+    "level_required": 15,
+    "slot": "armor",
+    "type": "heavy_armor",
+    "bonus_damage": 0,
+    "bonus_protection": 37,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 67,
+  "fields": {
+    "name": "Gryffon Leather Armor",
+    "price": 240,
+    "level_required": 27,
+    "slot": "armor",
+    "type": "light_armor",
+    "bonus_damage": 10,
+    "bonus_protection": 30,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 68,
+  "fields": {
+    "name": "Buckled Gryffon Leather Armor",
+    "price": 280,
+    "level_required": 28,
+    "slot": "armor",
+    "type": "medium_armor",
+    "bonus_damage": 0,
+    "bonus_protection": 40,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 69,
+  "fields": {
+    "name": "Ashen Robes",
+    "price": 390,
+    "level_required": 22,
+    "slot": "armor",
+    "type": "light_armor",
+    "bonus_damage": 5,
+    "bonus_protection": 25,
+    "bonus_health": 20,
+    "allowed_professions": [
+      3
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 70,
+  "fields": {
+    "name": "Deepforged Plates",
+    "price": 300,
+    "level_required": 28,
+    "slot": "armor",
+    "type": "heavy_armor",
+    "bonus_damage": 0,
+    "bonus_protection": 55,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 71,
+  "fields": {
+    "name": "Holy Scripted Plates",
+    "price": 450,
+    "level_required": 34,
+    "slot": "armor",
+    "type": "heavy_armor",
+    "bonus_damage": 20,
+    "bonus_protection": 68,
+    "bonus_health": 20,
+    "allowed_professions": [
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 72,
+  "fields": {
+    "name": "Manticora Leather Armor",
+    "price": 750,
+    "level_required": 38,
+    "slot": "armor",
+    "type": "light_armor",
+    "bonus_damage": 25,
+    "bonus_protection": 58,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 73,
+  "fields": {
+    "name": "Myrmidon Leather Armor",
+    "price": 850,
+    "level_required": 38,
+    "slot": "armor",
+    "type": "medium_armor",
+    "bonus_damage": 20,
+    "bonus_protection": 65,
+    "bonus_health": 15,
+    "allowed_professions": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 74,
+  "fields": {
+    "name": "Forsaken Legion's Plates",
+    "price": 900,
+    "level_required": 39,
+    "slot": "armor",
+    "type": "heavy_armor",
+    "bonus_damage": 0,
+    "bonus_protection": 78,
+    "bonus_health": 35,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 75,
+  "fields": {
+    "name": "Shadowbeast Leather Armor",
+    "price": 1400,
+    "level_required": 46,
+    "slot": "armor",
+    "type": "light_armor",
+    "bonus_damage": 30,
+    "bonus_protection": 77,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 76,
+  "fields": {
+    "name": "Netherworld Fused Armor",
+    "price": 1500,
+    "level_required": 46,
+    "slot": "armor",
+    "type": "medium_armor",
+    "bonus_damage": 10,
+    "bonus_protection": 85,
+    "bonus_health": 80,
+    "allowed_professions": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 77,
+  "fields": {
+    "name": "Meteor Shard Plates",
+    "price": 1600,
+    "level_required": 46,
+    "slot": "armor",
+    "type": "heavy_armor",
+    "bonus_damage": 40,
+    "bonus_protection": 95,
+    "bonus_health": 0,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 78,
+  "fields": {
+    "name": "Red Dragon Leather Armor",
+    "price": 3000,
+    "level_required": 58,
+    "slot": "armor",
+    "type": "light_armor",
+    "bonus_damage": 40,
+    "bonus_protection": 100,
+    "bonus_health": 100,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 79,
+  "fields": {
+    "name": "Black Dragon Leather Armor",
+    "price": 3400,
+    "level_required": 58,
+    "slot": "armor",
+    "type": "medium_armor",
+    "bonus_damage": 35,
+    "bonus_protection": 115,
+    "bonus_health": 20,
+    "allowed_professions": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 80,
+  "fields": {
+    "name": "Elder Dragon Scaled Plates",
+    "price": 3900,
+    "level_required": 59,
+    "slot": "armor",
+    "type": "heavy_armor",
+    "bonus_damage": 33,
+    "bonus_protection": 150,
+    "bonus_health": 90,
+    "allowed_professions": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 81,
+  "fields": {
+    "name": "Nethermancer Robes",
+    "price": 1500,
+    "level_required": 42,
+    "slot": "armor",
+    "type": "light_armor",
+    "bonus_damage": 30,
+    "bonus_protection": 60,
+    "bonus_health": 40,
+    "allowed_professions": [
+      3
+    ]
+  }
+},
+{
+  "model": "game.item",
+  "pk": 82,
+  "fields": {
+    "name": "Dragonstalker Trophy",
+    "price": 5000,
+    "level_required": 68,
+    "slot": "accessory",
+    "type": "accessory",
+    "bonus_damage": 50,
+    "bonus_protection": 30,
+    "bonus_health": 150,
+    "allowed_professions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "game.character",
+  "pk": 1,
+  "fields": {
+    "name": "Supaman",
+    "owner": 1,
+    "race": 1,
+    "profession": 1,
+    "level": 1,
+    "current_exp": 7,
+    "gold": 2,
+    "damage": 16,
+    "health": 158,
+    "protection": 10,
+    "equipped_weapon": null,
+    "equipped_armor": null,
+    "equipped_accessory": null,
+    "inventory": []
+  }
+},
+{
+  "model": "game.character",
+  "pk": 2,
+  "fields": {
+    "name": "Supagirl",
+    "owner": 1,
+    "race": 3,
+    "profession": 2,
+    "level": 15,
+    "current_exp": 8749,
+    "gold": 5649,
+    "damage": 92,
+    "health": 240,
+    "protection": 20,
+    "equipped_weapon": 24,
+    "equipped_armor": 20,
+    "equipped_accessory": 26,
+    "inventory": [
+      43,
+      37,
+      21,
+      68,
+      73,
+      79,
+      6,
+      10,
+      15,
+      31,
+      11,
+      42,
+      50,
+      7,
+      8,
+      12,
+      49,
+      4,
+      9,
+      13,
+      22,
+      5
+    ]
+  }
+},
+{
+  "model": "game.character",
+  "pk": 3,
+  "fields": {
+    "name": "Sanya",
+    "owner": 1,
+    "race": 4,
+    "profession": 4,
+    "level": 2,
+    "current_exp": 121,
+    "gold": 11,
+    "damage": 29,
+    "health": 124,
+    "protection": 8,
+    "equipped_weapon": 1,
+    "equipped_armor": 2,
+    "equipped_accessory": null,
+    "inventory": []
+  }
+},
+{
+  "model": "game.character",
+  "pk": 4,
+  "fields": {
+    "name": "Didi",
+    "owner": 1,
+    "race": 1,
+    "profession": 3,
+    "level": 2,
+    "current_exp": 107,
+    "gold": 12,
+    "damage": 32,
+    "health": 112,
+    "protection": 6,
+    "equipped_weapon": 1,
+    "equipped_armor": null,
+    "equipped_accessory": null,
+    "inventory": []
+  }
+},
+{
+  "model": "game.character",
+  "pk": 5,
+  "fields": {
+    "name": "Rofler",
+    "owner": 1,
+    "race": 4,
+    "profession": 2,
+    "level": 1,
+    "current_exp": 0,
+    "gold": 0,
+    "damage": 26,
+    "health": 134,
+    "protection": 7,
+    "equipped_weapon": 1,
+    "equipped_armor": null,
+    "equipped_accessory": null,
+    "inventory": []
+  }
+},
+{
+  "model": "game.character",
+  "pk": 11,
+  "fields": {
+    "name": "Snoot",
+    "owner": 2,
+    "race": 3,
+    "profession": 3,
+    "level": 31,
+    "current_exp": 86,
+    "gold": 15,
+    "damage": 48,
+    "health": 255,
+    "protection": 11,
+    "equipped_weapon": 1,
+    "equipped_armor": null,
+    "equipped_accessory": null,
+    "inventory": []
+  }
+},
+{
+  "model": "game.character",
+  "pk": 12,
+  "fields": {
+    "name": "Goblin",
+    "owner": 2,
+    "race": 1,
+    "profession": 4,
+    "level": 21,
+    "current_exp": 5649,
+    "gold": 11191,
+    "damage": 108,
+    "health": 219,
+    "protection": 31,
+    "equipped_weapon": 28,
+    "equipped_armor": 64,
+    "equipped_accessory": 43,
+    "inventory": []
+  }
+},
+{
+  "model": "game.character",
+  "pk": 15,
+  "fields": {
+    "name": "dadad",
+    "owner": 3,
+    "race": 1,
+    "profession": 1,
+    "level": 29,
+    "current_exp": 0,
+    "gold": 0,
+    "damage": 35,
+    "health": 301,
+    "protection": 16,
+    "equipped_weapon": 1,
+    "equipped_armor": null,
+    "equipped_accessory": null,
+    "inventory": []
+  }
+},
+{
+  "model": "game.character",
+  "pk": 17,
+  "fields": {
+    "name": "Tester",
+    "owner": 4,
+    "race": 3,
+    "profession": 1,
+    "level": 28,
+    "current_exp": 5044,
+    "gold": 13759,
+    "damage": 86,
+    "health": 290,
+    "protection": 74,
+    "equipped_weapon": 22,
+    "equipped_armor": 70,
+    "equipped_accessory": 43,
+    "inventory": [
+      25,
+      41,
+      66,
+      74,
+      64,
+      44,
+      10,
+      42,
+      12,
+      39,
+      40,
+      1,
+      35,
+      48
+    ]
+  }
+},
+{
+  "model": "game.character",
+  "pk": 18,
+  "fields": {
+    "name": "RichTester",
+    "owner": 4,
+    "race": 2,
+    "profession": 5,
+    "level": 45,
+    "current_exp": 11234,
+    "gold": 60000,
+    "damage": 40,
+    "health": 413,
+    "protection": 25,
+    "equipped_weapon": 1,
+    "equipped_armor": null,
+    "equipped_accessory": null,
+    "inventory": []
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 1,
+  "fields": {
+    "attacker": 2,
+    "defender": 12,
+    "winner": 2,
+    "loser": 12,
+    "gold_reward": 12,
+    "exp_reward": 147,
+    "date": "2025-11-30T00:35:00.331Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 2,
+  "fields": {
+    "attacker": 2,
+    "defender": 11,
+    "winner": 2,
+    "loser": 11,
+    "gold_reward": 2,
+    "exp_reward": 7,
+    "date": "2025-12-01T15:13:58.285Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 3,
+  "fields": {
+    "attacker": 2,
+    "defender": 11,
+    "winner": 2,
+    "loser": 11,
+    "gold_reward": 2,
+    "exp_reward": 7,
+    "date": "2025-12-01T15:19:13.243Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 4,
+  "fields": {
+    "attacker": 2,
+    "defender": 12,
+    "winner": 2,
+    "loser": 12,
+    "gold_reward": 12,
+    "exp_reward": 147,
+    "date": "2025-12-01T15:20:17.193Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 5,
+  "fields": {
+    "attacker": 2,
+    "defender": 12,
+    "winner": 2,
+    "loser": 12,
+    "gold_reward": 12,
+    "exp_reward": 147,
+    "date": "2025-12-01T15:20:30.836Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 6,
+  "fields": {
+    "attacker": 2,
+    "defender": 12,
+    "winner": 2,
+    "loser": 12,
+    "gold_reward": 12,
+    "exp_reward": 147,
+    "date": "2025-12-01T15:20:50.125Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 7,
+  "fields": {
+    "attacker": 2,
+    "defender": 12,
+    "winner": 12,
+    "loser": 2,
+    "gold_reward": 9,
+    "exp_reward": 105,
+    "date": "2025-12-01T15:22:24.028Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 8,
+  "fields": {
+    "attacker": 2,
+    "defender": 12,
+    "winner": 12,
+    "loser": 2,
+    "gold_reward": 9,
+    "exp_reward": 105,
+    "date": "2025-12-01T15:43:09.492Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 9,
+  "fields": {
+    "attacker": 2,
+    "defender": 12,
+    "winner": 12,
+    "loser": 2,
+    "gold_reward": 9,
+    "exp_reward": 105,
+    "date": "2025-12-01T15:43:48.964Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 10,
+  "fields": {
+    "attacker": 2,
+    "defender": 12,
+    "winner": 12,
+    "loser": 2,
+    "gold_reward": 9,
+    "exp_reward": 105,
+    "date": "2025-12-01T15:45:27.169Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 11,
+  "fields": {
+    "attacker": 2,
+    "defender": 12,
+    "winner": 2,
+    "loser": 12,
+    "gold_reward": 12,
+    "exp_reward": 147,
+    "date": "2025-12-01T15:51:32.948Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 12,
+  "fields": {
+    "attacker": 1,
+    "defender": 11,
+    "winner": 11,
+    "loser": 1,
+    "gold_reward": 2,
+    "exp_reward": 7,
+    "date": "2025-12-01T15:51:47.320Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 13,
+  "fields": {
+    "attacker": 3,
+    "defender": 11,
+    "winner": 11,
+    "loser": 3,
+    "gold_reward": 2,
+    "exp_reward": 7,
+    "date": "2025-12-01T21:11:23.281Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 14,
+  "fields": {
+    "attacker": 3,
+    "defender": 11,
+    "winner": 11,
+    "loser": 3,
+    "gold_reward": 2,
+    "exp_reward": 7,
+    "date": "2025-12-01T21:21:31.535Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 15,
+  "fields": {
+    "attacker": 3,
+    "defender": 11,
+    "winner": 3,
+    "loser": 11,
+    "gold_reward": 2,
+    "exp_reward": 7,
+    "date": "2025-12-01T21:23:37.104Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 16,
+  "fields": {
+    "attacker": 3,
+    "defender": 12,
+    "winner": 12,
+    "loser": 3,
+    "gold_reward": 2,
+    "exp_reward": 7,
+    "date": "2025-12-01T21:23:50.392Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 17,
+  "fields": {
+    "attacker": 3,
+    "defender": 12,
+    "winner": 3,
+    "loser": 12,
+    "gold_reward": 12,
+    "exp_reward": 147,
+    "date": "2025-12-01T21:25:04.723Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 18,
+  "fields": {
+    "attacker": 3,
+    "defender": 11,
+    "winner": 3,
+    "loser": 11,
+    "gold_reward": 2,
+    "exp_reward": 7,
+    "date": "2025-12-01T21:42:43.152Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 19,
+  "fields": {
+    "attacker": 4,
+    "defender": 12,
+    "winner": 4,
+    "loser": 12,
+    "gold_reward": 12,
+    "exp_reward": 147,
+    "date": "2025-12-02T18:31:43.713Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 20,
+  "fields": {
+    "attacker": 2,
+    "defender": 11,
+    "winner": 11,
+    "loser": 2,
+    "gold_reward": 9,
+    "exp_reward": 105,
+    "date": "2025-12-02T19:39:11.514Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 21,
+  "fields": {
+    "attacker": null,
+    "defender": 1,
+    "winner": 1,
+    "loser": null,
+    "gold_reward": 2,
+    "exp_reward": 7,
+    "date": "2025-12-02T21:05:07.008Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 22,
+  "fields": {
+    "attacker": null,
+    "defender": 1,
+    "winner": null,
+    "loser": 1,
+    "gold_reward": 2,
+    "exp_reward": 7,
+    "date": "2025-12-02T21:17:47.713Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 23,
+  "fields": {
+    "attacker": 17,
+    "defender": 12,
+    "winner": 17,
+    "loser": 12,
+    "gold_reward": 31,
+    "exp_reward": 152,
+    "date": "2025-12-05T14:38:08.350Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 24,
+  "fields": {
+    "attacker": 17,
+    "defender": 2,
+    "winner": 17,
+    "loser": 2,
+    "gold_reward": 23,
+    "exp_reward": 110,
+    "date": "2025-12-05T14:38:16.023Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 25,
+  "fields": {
+    "attacker": 17,
+    "defender": 12,
+    "winner": 17,
+    "loser": 12,
+    "gold_reward": 31,
+    "exp_reward": 152,
+    "date": "2025-12-05T14:38:26.282Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 26,
+  "fields": {
+    "attacker": 17,
+    "defender": 2,
+    "winner": 17,
+    "loser": 2,
+    "gold_reward": 23,
+    "exp_reward": 110,
+    "date": "2025-12-05T14:38:31.401Z"
+  }
+},
+{
+  "model": "game.battle",
+  "pk": 27,
+  "fields": {
+    "attacker": 17,
+    "defender": 12,
+    "winner": 12,
+    "loser": 17,
+    "gold_reward": 41,
+    "exp_reward": 201,
+    "date": "2025-12-05T14:38:40.796Z"
+  }
+}
+]
