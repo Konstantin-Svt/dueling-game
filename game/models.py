@@ -4,7 +4,9 @@ from random import randrange
 
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.db import models, transaction
+from django.urls import reverse
 
 
 class Player(AbstractUser):
@@ -14,6 +16,9 @@ class Player(AbstractUser):
         ordering = ["username"]
         verbose_name = "player"
         verbose_name_plural = "players"
+
+    def __str__(self):
+        return self.username
 
 
 class Race(models.Model):
@@ -26,6 +31,9 @@ class Race(models.Model):
         "Profession", related_name="allowed_races"
     )
 
+    def __str__(self):
+        return self.name
+
 
 class Profession(models.Model):
     name = models.CharField(max_length=63, unique=True)
@@ -34,9 +42,75 @@ class Profession(models.Model):
     protection_base = models.PositiveIntegerField()
     health_base = models.PositiveIntegerField()
 
+    def __str__(self):
+        return self.name
+
+
+class Item(models.Model):
+    ITEM_SLOTS = {
+        "weapon": "Weapon",
+        "armor": "Armor",
+        "accessory": "Accessory",
+    }
+    ITEM_TYPES = {
+        "sword": "Sword",
+        "mace": "Mace",
+        "dagger": "Dagger",
+        "axe": "Axe",
+        "staff": "Staff",
+        "magic_sword": "Magic Sword",
+        "bow": "Bow",
+        "crossbow": "Crossbow",
+        "heavy_armor": "Heavy Armor",
+        "medium_armor": "Medium Armor",
+        "light_armor": "Light Armor",
+        "accessory": "Accessory",
+    }
+
+    name = models.CharField(max_length=100, unique=True)
+    price = models.PositiveIntegerField()
+    level_required = models.PositiveIntegerField(default=1)
+
+    slot = models.CharField(max_length=63, choices=ITEM_SLOTS)
+    type = models.CharField(max_length=63, choices=ITEM_TYPES)
+    allowed_professions = models.ManyToManyField(
+        Profession, related_name="allowed_items"
+    )
+
+    bonus_damage = models.PositiveIntegerField(default=0)
+    bonus_protection = models.PositiveIntegerField(default=0)
+    bonus_health = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = (
+            "slot",
+            "type",
+            "level_required",
+            "name",
+        )
+
+    @property
+    def sell_price(self) -> int:
+        return self.price // 2
+
+    def __str__(self):
+        return self.name
+
+
+name_validator = RegexValidator(
+    regex=r"^[a-zA-Z]{2,12}$",
+    message="Name must contain only 2-12 latin letters.",
+)
+
 
 class Character(models.Model):
-    name = models.CharField(max_length=63, unique=True)
+    name = models.CharField(
+        max_length=12,
+        unique=True,
+        validators=[
+            name_validator,
+        ],
+    )
     owner = models.ForeignKey(
         Player, on_delete=models.CASCADE, related_name="characters"
     )
@@ -55,27 +129,33 @@ class Character(models.Model):
     protection = models.PositiveIntegerField(default=1)
 
     equipped_weapon = models.ForeignKey(
-        "Item",
+        Item,
         null=True,
+        blank=True,
         on_delete=models.SET_NULL,
         limit_choices_to={"slot": "weapon"},
         related_name="characters_with_weapon",
+        default=1,
     )
     equipped_armor = models.ForeignKey(
-        "Item",
+        Item,
         null=True,
+        blank=True,
         on_delete=models.SET_NULL,
         limit_choices_to={"slot": "armor"},
         related_name="characters_with_armor",
     )
     equipped_accessory = models.ForeignKey(
-        "Item",
+        Item,
         null=True,
+        blank=True,
         on_delete=models.SET_NULL,
         limit_choices_to={"slot": "accessory"},
         related_name="characters_with_accessory",
     )
-    inventory = models.ManyToManyField("Item", related_name="characters")
+    inventory = models.ManyToManyField(
+        Item, related_name="characters", blank=True
+    )
 
     class Meta:
         indexes = [
@@ -85,17 +165,26 @@ class Character(models.Model):
     def clean(self):
         super().clean()
         if self._state.adding:
-            if self.profession not in self.race.allowed_professions.all():
+            profession = getattr(self, "profession", None)
+            if (
+                profession
+                and profession not in self.race.allowed_professions.all()
+            ):
                 raise ValidationError(
-                    f"{self.profession.name} profession is not allowed for {self.race.name} race."
+                    f"{profession.name} profession is not"
+                    f" allowed for {self.race.name} race."
                 )
-            if self.owner.max_characters < self.owner.characters.count():
-                raise ValidationError(f"You cannot have more than {self.owner.max_characters} characters.")
+            owner = getattr(self, "owner", None)
+            if owner and owner.max_characters <= owner.characters.count():
+                raise ValidationError(
+                    f"You cannot have more than "
+                    f"{self.owner.max_characters} characters."
+                )
 
     def recalculate_stats(self) -> None:
         damage = self.profession.damage_base + self.level * 0.5
         protection = self.profession.protection_base + self.level * 0.2
-        health = self.profession.health_base + self.level * 10
+        health = self.profession.health_base + self.level * 5
 
         for item in [
             self.equipped_weapon,
@@ -112,6 +201,7 @@ class Character(models.Model):
         self.health = round(health * self.race.health_modifier)
 
     def save(self, *args, **kwargs):
+        self.full_clean()
         self.recalculate_stats()
         super().save(*args, **kwargs)
 
@@ -164,59 +254,35 @@ class Character(models.Model):
 
     def sell_item(self, item: Item) -> None:
         if item not in self.inventory.all():
-            raise ValidationError("You don't have that item.")
+            raise ValidationError(
+                "You don't have that item in your inventory."
+            )
         with transaction.atomic():
             self.inventory.remove(item)
-            self.gold += item.price // 2
+            self.gold += item.sell_price
             self.save()
 
+    def get_absolute_url(self):
+        return reverse(
+            "game:character-detail", kwargs={"char_name": self.name}
+        )
 
-class Item(models.Model):
-    ITEM_SLOTS = [
-        ("weapon", "Weapon"),
-        ("armor", "Armor"),
-        ("accessory", "Accessory"),
-    ]
-    ITEM_TYPES = [
-        ("sword", "Sword"),
-        ("axe", "Axe"),
-        ("staff", "Staff"),
-        ("magic_sword", "Magic Sword"),
-        ("bow", "Bow"),
-        ("crossbow", "Crossbow"),
-        ("heavy_armor", "Heavy Armor"),
-        ("medium_armor", "Medium Armor"),
-        ("light_armor", "Light Armor"),
-        ("accessory", "Accessory"),
-    ]
-
-    name = models.CharField(max_length=100, unique=True)
-    price = models.PositiveIntegerField()
-    level_required = models.PositiveIntegerField(default=1)
-
-    slot = models.CharField(max_length=63, choices=ITEM_SLOTS)
-    type = models.CharField(max_length=63, choices=ITEM_TYPES)
-    allowed_professions = models.ManyToManyField(
-        Profession, related_name="allowed_items"
-    )
-
-    bonus_damage = models.PositiveIntegerField(default=0)
-    bonus_protection = models.PositiveIntegerField(default=0)
-    bonus_health = models.PositiveIntegerField(default=0)
+    def __str__(self):
+        return f"{self.name} ({self.level} lvl)"
 
 
 class Battle(models.Model):
-    challenger = models.ForeignKey(
+    attacker = models.ForeignKey(
         Character,
         on_delete=models.SET_NULL,
         null=True,
-        related_name="battles_as_challenger",
+        related_name="battles_as_attacker",
     )
-    duelist = models.ForeignKey(
+    defender = models.ForeignKey(
         Character,
         on_delete=models.SET_NULL,
         null=True,
-        related_name="battles_as_duelist",
+        related_name="battles_as_defender",
     )
     winner = models.ForeignKey(
         Character,
@@ -224,6 +290,14 @@ class Battle(models.Model):
         null=True,
         related_name="battles_as_winner",
     )
+    loser = models.ForeignKey(
+        Character,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="battles_as_loser",
+    )
+    gold_reward = models.PositiveIntegerField(default=0)
+    exp_reward = models.PositiveIntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -232,19 +306,35 @@ class Battle(models.Model):
     def clean(self):
         super().clean()
         if self._state.adding:
-            if self.challenger == self.duelist:
+            if self.attacker == self.defender:
                 raise ValidationError("You can't battle yourself.")
+            if self.winner not in (
+                self.attacker,
+                self.defender,
+            ) or self.loser not in (self.attacker, self.defender):
+                raise ValidationError(
+                    "Winner/loser must be either attacker or defender."
+                )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
     def calculate_winner(self) -> None:
-        if self.challenger and self.duelist:
-            battlers_list = [self.challenger, self.duelist]
+        if self.attacker and self.defender:
+            battlers_list = [self.attacker, self.defender]
+            winner_index = randrange(0, 2)
             with transaction.atomic():
-                winner = randrange(0, 1)
-                self.winner = battlers_list[winner]
-                loser = battlers_list[1 - winner]
-                self.winner.gold += loser.level * 2
-                self.winner.add_exp(loser.level * 10)
+                self.winner = battlers_list[winner_index]
+                self.loser = loser = battlers_list[1 - winner_index]
+                self.gold_reward = round(loser.level * 1.4) + 2
+                self.winner.gold += self.gold_reward
+                self.exp_reward += loser.level * 7 + 5
+                self.winner.add_exp(self.exp_reward)
                 self.winner.save()
                 self.save()
         else:
             raise ValidationError("You need 2 participants.")
+
+    def get_absolute_url(self):
+        return reverse("game:battle-detail", kwargs={"pk": self.pk})
