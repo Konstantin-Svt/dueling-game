@@ -1,0 +1,34 @@
+{% load static %}
+  <button class="navbar-toggler sidebar-icon" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+    <span class="navbar-toggler-icon">☰</span>
+  </button>
+
+<div class="offcanvas offcanvas-start sidebar-parent" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <button type="button" class="btn-close btn-close-white close-button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <div class="offcanvas-body sidebar-content">
+  <img src="{% static 'images/logo.png' %}" class="img-fluid logo" alt="game-logo">
+
+    <ul class="sidebar-nav list-group sidebar-parent">
+      {% if user.is_authenticated %}
+        <li class="list-group-item back-dark-red" style="color: white;">{{ user.get_username }}</li>
+        <li class="list-group-item back-dark-red"><a href="{% url 'game:my-character-list' %}">My Characters</a></li>
+        <li class="list-group-item back-dark-red">
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link link-button">Logout</button>
+          </form>
+        </li>
+      {% else %}
+        <li class="list-group-item back-dark-red"><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+
+      <br>
+
+      <li class="list-group-item back-dark-red"><a href="{% url 'game:character-list' %}">Ladder</a></li>
+      <li class="list-group-item back-dark-red"><a href="{% url 'game:battle-list' %}">Last Battles</a></li>
+      <li class="list-group-item back-dark-red"><a href="{% url 'game:item-list' %}">Items Compendium</a></li>
+    </ul>
+  </div>
+</div>
+
