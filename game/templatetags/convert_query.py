@@ -3,6 +3,7 @@ from django import template
 
 register = template.Library()
 
+
 @register.simple_tag
 def convert_query(request, **kwargs):
     updated = request.GET.copy()
