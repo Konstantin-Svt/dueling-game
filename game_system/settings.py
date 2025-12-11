@@ -21,15 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-load_dotenv(BASE_DIR / ".env")
+load_dotenv()
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-2p)cm*ym+av3=mf^hrl&rihyr6ick_3g2+9#b_8t7tl_3z-)99")
+SECRET_KEY = os.environ.get("SECRET_KEY", "default-insecure-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "") != "False"
-
-if DEBUG:
-    SECURE_HSTS_SECONDS = 0
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -48,10 +45,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "game",
+
+    #libs:
     "crispy_bootstrap5",
     "crispy_forms",
     "debug_toolbar",
+
+    #user apps:
+    "game",
 ]
 
 MIDDLEWARE = [
