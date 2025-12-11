@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Choose Opponent</title>{% endblock %}
+
+{% block background %}
+   <style>
+     body {
+        background-image:
+           linear-gradient(rgba(80, 10, 10, 0.5), rgba(80, 10, 10, 0.5)),
+           url("{% static 'images/background/battle.png' %}");
+     }
+  </style>
+{% endblock %}
+
+{% block content %}
+  {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+      {{ error }}
+    {% endfor %}
+  {% endif %}
+
+  <h1 class="mt-2">
+    Choose Opponent for
+      <img src="{% static 'images/races/' %}{{ character.race.name }}.png" alt="race-icon" class="icon charlist-icon ladderlist-icon">
+      <img src="{% static 'images/professions/' %}{{ character.profession.name }}.png" alt="profession-icon" class="icon charlist-icon ladderlist-icon">
+      {{ character.name }} (level {{ character.level }}):
+  </h1>
+
+  {% for opponent in opponents %}
+    <div class="d-flex gap-3 mt-3">
+      <p>
+        <img src="{% static 'images/races/' %}{{ opponent.race.name }}.png" alt="race-icon" class="icon charlist-icon">
+        <img src="{% static 'images/professions/' %}{{ opponent.profession.name }}.png" alt="profession-icon" class="icon charlist-icon">
+        <a href="{% url 'game:character-detail' char_name=opponent.name %}" target="_blank" rel="noopener noreferrer">
+          {{ opponent.name }} (level {{ opponent.level }})
+        </a>
+      </p>
+      <form action="" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="defender" value="{{ opponent.id }}">
+        <button type="submit" class="btn btn-primary mt-2">Battle</button>
+      </form>
+    </div>
+    {% empty %}
+      <p>No opponents found for you. Try later!</p>
+    {% endfor %}
+
+{% endblock %}

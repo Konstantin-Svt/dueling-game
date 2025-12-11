@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load convert_query %}
+{% load crispy_forms_filters %}
+
+{% block title %}<title>Item Shop</title>{% endblock %}
+
+{% block background %}
+ <style>
+   body {
+      background-image:
+         linear-gradient(rgba(80, 10, 10, 0.5), rgba(80, 10, 10, 0.5)),
+         url("{% static 'images/background/market.png' %}");
+   }
+ </style>
+{% endblock %}
+
+{% block content %}
+  {% if character %}
+    <img src="{% static 'images/races/' %}{{ character.race.name }}.png" alt="race-icon" class="icon chardetail-icon">
+    <img src="{% static 'images/professions/' %}{{ character.profession.name }}.png" alt="profession-icon" class="icon chardetail-icon">
+    <div class="d-flex gap-3">
+      <h1>{{ character.name }} shopping (gold: {{ character.gold }})</h1>
+      <a href="{% url 'game:character-detail' char_name=character.name %}" class="btn btn-primary btn-background mt-2 mb-2" style="width: 80px; max-height: 40px;">Back</a>
+    </div>
+  {% endif %}
+  <div class="col-sm-4">
+    <form action="" method="get" class="d-flex gap-3 mt-2">
+      {{ search_form|crispy }}
+      {% for key, value in request.GET.items %}
+        {% if key != "searched_name" %}
+          <input type="hidden" name="{{ key }}" value="{{ value }}">
+        {% endif %}
+      {% endfor %}
+      <button type="submit" class="btn btn-primary ms-2" style="width: 80px; max-height: 40px;">Search</button>
+    </form>
+  </div>
+
+  <form method="get" class="d-flex gap-2 mb-3">
+    <select name="slot" class="form-select" onchange="this.form.submit()">
+      <option value="">All Slots</option>
+      {% for slot_value, slot_label in slots.items %}
+        <option value="{{ slot_value }}" {% if slot_value == selected_slot %}selected{% endif %}>{{ slot_label }}</option>
+      {% endfor %}
+    </select>
+    <select name="type" class="form-select" onchange="this.form.submit()">
+      <option value="">All Types</option>
+      {% for type_value, type_label in types.items %}
+        <option value="{{ type_value }}" {% if type_value == selected_type %}selected{% endif %}>{{ type_label }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
+ <div class="row">
+  {% for item in item_list %}
+    <div class="col-lg-4 mt-4 mb-4">
+      <div class="card back-grey border-gold">
+        <div class="row">
+          <div class="col lg-4">
+            <img src="{% static 'images/items/' %}{{ item.name }}.png" class="rounded-start itemempty-icon" alt="item-icon">
+          </div>
+          <div class="col lg-8">
+            <div class="card-body">
+              <h2 class="card-title">{{ item.name }}</h2>
+              <h3 class="card-title {% if character.level < item.level_required %}text-red{% endif %}">
+                (level {{ item.level_required }} {{ item.get_type_display }})
+              </h3>
+              <ul class="card-text no-wrap">
+                {% if item.bonus_damage %}<li>Damage: {{ item.bonus_damage }}</li>{% endif %}
+                {% if item.bonus_protection %}<li>Protection: {{ item.bonus_protection }}</li>{% endif %}
+                {% if item.bonus_health %}<li>Health: {{ item.bonus_health }}</li>{% endif %}
+              </ul>
+              <p class="card-text {% if character and character.profession not in item.allowed_professions.all %}text-red{% endif %}">Requires:
+                <br>
+                {% for profession in item.allowed_professions.all %}{{ profession.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+              </p>
+              <p>Price: {{ item.price }} gold</p>
+              {% if character %}
+                {% if item.is_owned %}
+                  <p class="no-wrap text-green">✔ owned</p>
+                {% else %}
+                  <a href="{% url 'game:confirm-deal' char_name=character.name action='buy' item_name=item.name %}?{% convert_query request next=request.get_full_path %}"
+                     class="btn btn-primary"
+                     style="width: 80px;">
+                    Buy
+                  </a>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>No items.</p>
+  {% endfor %}
+ </div>
+{% endblock %}

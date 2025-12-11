@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Create Character</title>{% endblock %}
+
+{% block background %}
+   <style>
+     body {
+        background-image:
+           linear-gradient(rgba(80, 10, 10, 0.5), rgba(80, 10, 10, 0.5)),
+           url("{% static 'images/background/duel.png' %}");
+     }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <h1>Battle at {{ object.date|date:"j M Y, H:i" }}</h1>
+  <p>
+    {% if object.attacker %}{{ object.attacker.name }}{% else %}NONE{% endif %} vs {% if object.defender %}{{ object.defender.name }}{% else %}NONE{% endif %}
+  </p>
+
+  <h2>
+    Winner:
+    {% if object.winner %}
+      <img src="{% static 'images/races/' %}{{ object.winner.race.name }}.png" alt="race-icon" class="icon charlist-icon">
+      <img src="{% static 'images/professions/' %}{{ object.winner.profession.name }}.png" alt="profession-icon" class="icon charlist-icon">
+      <a href="{% url 'game:character-detail' char_name=object.winner.name %}">
+        {{ object.winner.name }} (level {{ object.winner.level }})
+      </a>
+    {% else %}
+      NONE
+    {% endif %}
+  </h2>
+  <p>Reward:<br>{{ object.gold_reward }} Gold<br>{{ object.exp_reward }} Experience</p>
+
+  <h3>
+    Loser:
+    {% if object.loser %}
+      <img src="{% static 'images/races/' %}{{ object.loser.race.name }}.png" alt="race-icon" class="icon charlist-icon ladderlist-icon">
+      <img src="{% static 'images/professions/' %}{{ object.loser.profession.name }}.png" alt="profession-icon" class="icon charlist-icon ladderlist-icon">
+      <a href="{% url 'game:character-detail' char_name=object.loser.name %}">
+        {{ object.loser.name }} (level {{ object.loser.level }})
+      </a>
+    {% else %}
+      NONE
+    {% endif %}
+  </h3>
+{% endblock %}

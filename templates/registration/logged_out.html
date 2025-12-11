@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block background %}
+ <style>
+   body {
+      background-image:
+         linear-gradient(rgba(80, 10, 10, 0.5), rgba(80, 10, 10, 0.5)),
+         url("{% static 'images/background/leaving_tent.png' %}");
+   }
+ </style>
+{% endblock %}
+
+{% block content %}
+<h1>Logged out!</h1>
+
+<a href="{% url 'login'%}">Click here to login again.</a>
+{% endblock %}

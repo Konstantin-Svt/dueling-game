@@ -1,0 +1,31 @@
+.animation {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
+    overflow: hidden;
+}
+
+#video-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.container-login {
+    color: white;
+    margin: 0 auto;
+    padding: 10px 25px;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    border: solid grey 3px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-top: 20vh;
+}
+
+.alert, .alert-block, .alert-danger {
+  display: none !important;
+}

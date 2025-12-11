@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>My Characters</title>{% endblock %}
+
+{% block background %}
+ <style>
+   body {
+      background-image:
+         linear-gradient(rgba(80, 10, 10, 0.5), rgba(80, 10, 10, 0.5)),
+         url("{% static 'images/background/campfire.png' %}");
+   }
+ </style>
+{% endblock %}
+
+{% block content %}
+  <h1>Characters ({{ user.max_characters }} max)</h1>
+  {% for character in character_list %}
+    <p>
+      <img src="{% static 'images/races/' %}{{ character.race.name }}.png" alt="race-icon" class="icon charlist-icon">
+      <img src="{% static 'images/professions/' %}{{ character.profession.name }}.png" alt="profession-icon" class="icon charlist-icon">
+      <a href="{% url 'game:character-detail' char_name=character.name %}">
+        {{ character.name }} (level {{ character.level }})
+      </a>
+    </p>
+  {% empty %}
+    <p>No characters yet. Create a new one!</p>
+  {% endfor %}
+  {% if character_list|length < user.max_characters %}
+    <a class="btn btn-primary" href="{% url 'game:character-create' %}?chosen_race=1">Create New</a>
+  {% endif %}
+{% endblock %}

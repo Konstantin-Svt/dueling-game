@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block title %}<title>Ladder</title>{% endblock %}
+
+{% block background %}
+ <style>
+   body {
+      background-image:
+         linear-gradient(rgba(80, 10, 10, 0.5), rgba(80, 10, 10, 0.5)),
+         url("{% static 'images/background/monster.png' %}");
+   }
+ </style>
+{% endblock %}
+
+{% block content %}
+  {% if not character %}
+    <div class="col-sm-4">
+      <form action="" method="get" class="d-flex gap-3 mt-2">
+        {{ search_form|crispy }}
+        <button type="submit" class="btn btn-primary ms-2" style="width: 80px; max-height: 40px;">Search</button>
+      </form>
+    </div>
+  {% endif %}
+
+  <h1>
+    {% if character %}
+    <img src="{% static 'images/races/' %}{{ character.race.name }}.png" alt="race-icon" class="icon charlist-icon">
+    <img src="{% static 'images/professions/' %}{{ character.profession.name }}.png" alt="profession-icon" class="icon charlist-icon">
+    {{ character.name }}'s Battles
+    {% elif searched_name %}Searched Battle Participants
+    {% else %}Last {{ battle_list|length }} Battles
+    {% endif %}
+  </h1>
+
+  <div class="col-sm-11">
+    <table class="table table-borderless my-table">
+      <thead>
+        <tr>
+          <th scope="col">Attacker</th>
+          <th scope="col" class="pe-5">VS</th>
+          <th scope="col">Defender</th>
+          <th scope="col">Winner</th>
+          <th scope="col">Date</th>
+          <th scope="col">Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for battle in battle_list %}
+        <tr class="align-middle">
+          <td>
+            {% if battle.attacker %}
+              <img src="{% static 'images/races/' %}{{ battle.attacker.race.name }}.png" alt="race-icon" class="icon charlist-icon ladderlist-icon">
+              <img src="{% static 'images/professions/' %}{{ battle.attacker.profession.name }}.png" alt="profession-icon" class="icon charlist-icon ladderlist-icon">
+              <a href="{% url 'game:character-detail' char_name=battle.attacker.name %}">
+                {{ battle.attacker.name }} (level {{ battle.attacker.level }})
+              </a>
+            {% else %}
+              <p>NONE</p>
+            {% endif %}
+          </td>
+          <td>VS</td>
+          <td>
+            {% if battle.defender %}
+              <img src="{% static 'images/races/' %}{{ battle.defender.race.name }}.png" alt="race-icon" class="icon charlist-icon ladderlist-icon">
+              <img src="{% static 'images/professions/' %}{{ battle.defender.profession.name }}.png" alt="profession-icon" class="icon charlist-icon ladderlist-icon">
+              <a href="{% url 'game:character-detail' char_name=battle.defender.name %}">
+                {{ battle.defender.name }} (level {{ battle.defender.level }})
+              </a>
+            {% else %}
+              <p>NONE</p>
+            {% endif %}
+          </td>
+          <td>
+            {% if battle.winner %}{{ battle.winner.name }}{% else %}NONE{% endif %}
+          </td>
+          <td>
+            {{ battle.date|date:"j M Y, H:i" }}
+          </td>
+          <td>
+            <a href="{% url 'game:battle-detail' battle.id %}">Link</a>
+          </td>
+        </tr>
+        {% empty %}
+        <td>No results.</td>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}

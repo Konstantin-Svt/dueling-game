@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Delete {{ object.name }}</title>{% endblock %}
+
+{% block background %}
+ <style>
+   body {
+      background-image:
+         linear-gradient(rgba(80, 10, 10, 0.5), rgba(80, 10, 10, 0.5)),
+         url("{% static 'images/background/red_portal.png' %}");
+   }
+ </style>
+{% endblock %}
+
+{% block content %}
+  <img src="{% static 'images/races/' %}{{ object.race.name }}.png" alt="race-icon" class="icon chardetail-icon">
+  <img src="{% static 'images/professions/' %}{{ object.profession.name }}.png" alt="profession-icon" class="icon chardetail-icon">
+  <h1>{{ object.name }} Deletion</h1>
+
+  <h2>Are you sure you want to delete character {{ object.name }}?</h2>
+  <p><em>All owned items and gold shall be deleted as well. This change is irreversible.</em></p>
+
+  <div class="d-flex gap-3 mt-3">
+    <button type="submit" class="btn btn-primary btn-background" style="width: 80px;" onclick="history.back()">Back</button>
+    <form action="" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Confirm</button>
+    </form>
+  </div>
+{% endblock %}

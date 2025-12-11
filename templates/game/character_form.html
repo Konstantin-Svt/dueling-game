@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block title %}<title>Create Character</title>{% endblock %}
+
+{% block background %}
+   <style>
+     body {
+        background-image:
+           linear-gradient(rgba(80, 10, 10, 0.5), rgba(80, 10, 10, 0.5)),
+           url("{% static 'images/background/training_ground.png' %}");
+     }
+  </style>
+{% endblock %}
+
+{% block content %}
+{% if form.non_field_errors %}
+  {% for error in form.non_field_errors %}
+    {{ error }}
+  {% endfor %}
+{% endif %}
+
+<h1 class="mt-2">Create Character</h1>
+<div class="container-fluid mt-4">
+  <form method="POST" novalidate>
+    {% csrf_token %}
+    <p class="mt-2">Race:</p>
+    <div class="col-sm-8">
+      <div class="row race-select">
+        {% for race in races %}
+          <a href="?chosen_race={{ race.id }}"
+             class="race-option {% if race == chosen_race %}selected disabled{% endif %} col-sm-2">
+            <img src="{% static 'images/races/' %}{{ race.name }}.png" alt="{{ race.name }}-icon">
+            <p>{{ race.name }}</p>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+  {% if chosen_race %}
+    <div class="col-sm-8 mt-3 p-3 back-grey border-gold">
+      <p>{{ chosen_race.description }}</p>
+    </div>
+    <input type="hidden" name="race" value="{{ chosen_race.id }}">
+
+    <p class="mt-5 mb-2">Profession:</p>
+    {% for error in form.profession.errors %}
+      <p class="text-red">{{ error }}</p>
+    {% endfor %}
+    <div class="col-sm-6">
+      <div class="row">
+        {% for profession in chosen_race.allowed_professions.all %}
+          <div class="col-sm-4">
+            <label class="card shadow-sm select-card">
+              <input type="radio" name="profession" value="{{ profession.id }}" class="d-none">
+              <img src="{% static 'images/professions/' %}{{ profession.name }}.png" alt="{{ profession.name }}-icon">
+              <div class="card-body text-center">
+                <h5>{{ profession.name }}</h5>
+              </div>
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-sm-4 mt-2">
+      <label class="form-label">{{ form.name.label_tag }}</label>
+      {{ form.name }}
+      {% for error in form.name.errors %}
+        <p class="text-red">{{ error }}</p>
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Create</button>
+  {% endif %}
+  </form>
+</div>
+{% endblock %}
